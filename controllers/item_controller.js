@@ -20,15 +20,24 @@ module.exports.home = function (req, res) {
     ];
     for (let i = 0; i < items.length; i++) {
       let date = new Date(items[i].due_date);
-      if (date < new Date()) items[i].due = true;
+      let today = new Date();
+      if (
+        date.getDay() === today.getDay() &&
+        date.getMonth() === today.getMonth() &&
+        date.getFullYear() == today.getFullYear()
+      ) {
+        items[i].dueDate = "TODAY";
+      } else {
+        // console.log(items[i].due);
+        items[i].dueDate =
+          month[date.getMonth()] +
+          " " +
+          date.getDate().toString() +
+          ", " +
+          date.getFullYear().toString().substr(2, 2);
+      }
+      if (date < today) items[i].due = true;
       else items[i].due = false;
-      // console.log(items[i].due);
-      items[i].dueDate =
-        month[date.getMonth()] +
-        " " +
-        date.getDate().toString() +
-        ", " +
-        date.getFullYear().toString().substr(2, 2);
       // console.log(items[i].ram);
     }
     // console.error(__filename, items[0].ram);
