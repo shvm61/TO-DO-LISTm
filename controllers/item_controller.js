@@ -23,7 +23,7 @@ module.exports.home = function (req, res) {
       items[i].dueDate =
         date.getDate().toString() +
         " " +
-        month[date.getMonth() + 1] +
+        month[date.getMonth()] +
         ", " +
         date.getFullYear().toString().substr(2, 2);
       // console.log(items[i].ram);
@@ -35,7 +35,8 @@ module.exports.home = function (req, res) {
   });
 };
 module.exports.createItem = function (req, res) {
-  // console.error(__filename, req.body);
+  console.error(__filename, req.body);
+  if (!req.body.due_date) req.body.due_date = Date.now();
   Item.create({ name: req.body.item, due_date: req.body.due_date }, function (
     err,
     item
