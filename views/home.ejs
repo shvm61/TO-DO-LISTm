@@ -46,7 +46,7 @@
         <ul class="list-group">
           
           <% for(let i=0;i<item.length;i++){ %>
-          <li class="list-group-item  d-flex flex-row justify-content-between" style="font-size: 1.5rem;" aria-disabled="true">
+          <li class="list-group-item  d-flex flex-row justify-content-between border-right-0" style="font-size: 1.5rem;" aria-disabled="true">
             <% if(item[i].completed){ %> 
              <span class="w-25"><del><%= item[i].name %></del> </span>
             <% } else{%> 
