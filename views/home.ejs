@@ -52,8 +52,12 @@
             <% } else{%> 
              <span class="w-25"><%= item[i].name %> </span>
              <% } %> 
-             
-             <span style="font-size: 0.75em;" > <i class="far fa-calendar-alt"></i> <%= item[i].dueDate %> </span>
+             <% if(item[i].due){ %> 
+             <span style="font-size: 0.75em;" class="text-danger" > <i class="far fa-calendar-alt"></i> <%= item[i].dueDate %> </span>
+             <% }else{ %> 
+             <span style="font-size: 0.75em;"  > <i class="far fa-calendar-alt"></i> <%= item[i].dueDate %> </span>
+
+             <% } %> 
              <span>
              <a href="/complete-item/?id=<%= item[i].id %> "><i class="fas fa-check-circle"></i></a> 
              <a href="/delete-item/?id=<%= item[i].id %> "><i class="fas fa-trash-alt"></i></a>

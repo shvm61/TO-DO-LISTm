@@ -4,26 +4,29 @@ module.exports.home = function (req, res) {
     if (err) {
       return res.send(err);
     }
+    let month = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
     for (let i = 0; i < items.length; i++) {
-      let month = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-      ];
       let date = new Date(items[i].due_date);
+      if (date < new Date()) items[i].due = true;
+      else items[i].due = false;
+      // console.log(items[i].due);
       items[i].dueDate =
-        date.getDate().toString() +
-        " " +
         month[date.getMonth()] +
+        " " +
+        date.getDate().toString() +
         ", " +
         date.getFullYear().toString().substr(2, 2);
       // console.log(items[i].ram);
