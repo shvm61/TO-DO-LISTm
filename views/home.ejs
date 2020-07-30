@@ -38,7 +38,7 @@
             />
           </div>
           <div class="w-100 text-center mb-2">
-            <button type="submit" class="btn btn-primary">ADD TASK</button>
+            <button type="submit" class="btn btn-dark">ADD TASK</button>
 
 
           </div>
@@ -50,17 +50,18 @@
             <% if(item[i].completed){ %> 
              <span class="w-25"><del><%= item[i].name %></del> </span>
             <% } else{%> 
-             <span class="w-25"><%= item[i].name %> </span>
+             <span class="w-25" contenteditable="true"><%= item[i].name %> </span>
              <% } %> 
+             <button type="button" class="update-item d-none btn btn-dark"data-id="<%= item[i].id %> ">Update</button>
              <% if(item[i].due){ %> 
-             <span style="font-size: 0.75em;" class="text-danger" > <i class="far fa-calendar-alt"></i> <%= item[i].dueDate %> </span>
+             <span style="font-size: 0.75em;" class="text-danger cal" > <i class="far fa-calendar-alt"></i> <%= item[i].dueDate %> </span>
              <% }else{ %> 
-             <span style="font-size: 0.75em;"  > <i class="far fa-calendar-alt"></i> <%= item[i].dueDate %> </span>
+             <span style="font-size: 0.75em;"  class="cal"> <i class="far fa-calendar-alt"></i> <%= item[i].dueDate %> </span>
 
              <% } %> 
              <span>
-             <a href="/complete-item/?id=<%= item[i].id %> "><i class="fas fa-check-circle"></i></a> 
-             <a href="/delete-item/?id=<%= item[i].id %> "><i class="fas fa-trash-alt"></i></a>
+             <a href="/complete-item/?id=<%= item[i].id %> "><i class="fas fa-check-circle text-dark"></i></a> 
+             <a href="/delete-item/?id=<%= item[i].id %> "><i class="fas fa-trash-alt text-dark"></i></a>
              </span>
           </li>
           <% } %>
@@ -86,5 +87,7 @@
       src="https://kit.fontawesome.com/d063caab8f.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="/js/home.js"></script>
   </body>
 </html>

@@ -7,8 +7,8 @@ const db = require("./config/mongoose");
 app.use(express.static("./assets"));
 
 // Url Pareser
+app.use(express.json());
 app.use(express.urlencoded());
-
 // use express router
 app.use("/", require("./routes"));
 

@@ -1,5 +1,8 @@
 .fa-trash-alt:hover {
-  color: red;
+  color: red !important;
+}
+.fa-check-circle:hover {
+  color: green !important;
 }
 .container {
   margin-top: 9%;

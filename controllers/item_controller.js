@@ -1,5 +1,6 @@
 const Item = require("../models/item");
 module.exports.home = function (req, res) {
+  console.log("home page");
   Item.find({}, function (err, items) {
     if (err) {
       return res.send(err);
@@ -81,5 +82,22 @@ module.exports.completeItem = function (req, res) {
       }
     });
     return res.redirect("/");
+  });
+};
+
+module.exports.updateItem = function (req, res) {
+  console.log("put update item");
+  Item.findById(req.body.id, function (err, item) {
+    if (err) {
+      res.json({
+        error: err,
+      });
+    }
+    item.name = req.body.content;
+    item.save();
+    console.log("updated item");
+    res.status(200).json({ status: "success" });
+    // res.redirect(303, "/");
+    // return res.redirect("/");
   });
 };
