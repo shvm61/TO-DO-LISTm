@@ -1,6 +1,5 @@
 const Item = require("../models/item");
 module.exports.home = function (req, res) {
-  console.log("home page");
   Item.find({}, function (err, items) {
     if (err) {
       return res.send(err);
