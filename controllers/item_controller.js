@@ -49,6 +49,7 @@ module.exports.home = function (req, res) {
 module.exports.createItem = function (req, res) {
   console.error(__filename, req.body);
   if (!req.body.due_date) req.body.due_date = Date.now();
+  else req.body.due_date = new Date(req.body.due_date);
   Item.create({ name: req.body.item, due_date: req.body.due_date }, function (
     err,
     item
