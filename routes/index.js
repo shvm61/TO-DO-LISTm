@@ -5,6 +5,8 @@ const itemController = require("../controllers/item_controller");
 
 console.log("router loaded");
 
+// Handle all the routes
+
 router.get("/", itemController.home);
 router.post("/create-item", itemController.createItem);
 router.get("/delete-item", itemController.deleteItem);

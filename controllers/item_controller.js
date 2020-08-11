@@ -1,4 +1,6 @@
 const Item = require("../models/item");
+
+// home page- get all data from database
 module.exports.home = function (req, res) {
   Item.find({}, function (err, items) {
     if (err) {
@@ -18,6 +20,7 @@ module.exports.home = function (req, res) {
       "Nov",
       "Dec",
     ];
+    // If date is today convert it to "TODAY", and display in red
     for (let i = 0; i < items.length; i++) {
       let date = new Date(items[i].due_date);
       let today = new Date();
@@ -40,12 +43,13 @@ module.exports.home = function (req, res) {
       else items[i].due = false;
       // console.log(items[i].ram);
     }
-    // console.error(__filename, items[0].ram);
     return res.render("home", {
       item: items,
     });
   });
 };
+
+// Create an item
 module.exports.createItem = function (req, res) {
   console.error(__filename, req.body);
   if (!req.body.due_date) req.body.due_date = Date.now();
@@ -61,6 +65,7 @@ module.exports.createItem = function (req, res) {
   });
 };
 
+// Deleteing and item
 module.exports.deleteItem = function (req, res) {
   Item.findByIdAndDelete(req.query.id, function (err) {
     if (err) {
@@ -70,6 +75,7 @@ module.exports.deleteItem = function (req, res) {
   });
 };
 
+// Complete item
 module.exports.completeItem = function (req, res) {
   Item.findById(req.query.id, function (err, item) {
     if (err) {
@@ -85,6 +91,7 @@ module.exports.completeItem = function (req, res) {
   });
 };
 
+// Updating the incomplete to do item
 module.exports.updateItem = function (req, res) {
   console.log("put update item");
   Item.findById(req.body.id, function (err, item) {
